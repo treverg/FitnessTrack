@@ -1,0 +1,207 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Database</name>
+    </assembly>
+    <members>
+        <member name="T:Database.DatabaseCreator">
+            <summary>
+            A class used to create a database for the fitness tracker app.
+            </summary>
+        </member>
+        <member name="M:Database.DatabaseCreator.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Database.DatabaseCreator"/> class.
+            </summary>
+            <param name="configuration">The configuration to use. Needs to contain a connection string.</param>
+        </member>
+        <member name="P:Database.DatabaseCreator.Configuration">
+            <summary>
+            Gets the configuration the solution is using.
+            </summary>
+        </member>
+        <member name="P:Database.DatabaseCreator.ConnectionStringName">
+            <summary>
+            Gets or Sets connection string to use.
+            </summary>
+        </member>
+        <member name="P:Database.DatabaseCreator.ConnectionString">
+            <summary>
+            Gets value of the connection string.
+            </summary>
+        </member>
+        <member name="M:Database.DatabaseCreator.CreateDatabase(System.String)">
+            <summary>
+            Drops the existing database with that name, and creates a new one. WARNING DANGEROUS.
+            </summary>
+            <param name="databaseName">The database name to create.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Database.DatabaseCreator.DestoryDatabaseMuhahaha(System.String)">
+            <summary>
+            Destorys a database, and all of its tables. (Not the tables!).
+            </summary>
+            <param name="databaseName">The database to destroy.</param>
+            <returns>A task to execute the destory.</returns>
+        </member>
+        <member name="T:Database.DatabaseUpdates.IUpdate">
+            <summary>
+            Provides an update method for updating the database.
+            </summary>
+        </member>
+        <member name="P:Database.DatabaseUpdates.IUpdate.UpdateSQL">
+            <summary>
+            Gets the update sql for the database.
+            </summary>
+        </member>
+        <member name="P:Database.DatabaseUpdates.IUpdate.Priority">
+            <summary>
+            Gets the priority of the update statement.
+            </summary>
+        </member>
+        <member name="T:Database.DatabaseUpdates.Update1">
+            <summary>
+            Represents the first iteration of the database.
+            </summary>
+        </member>
+        <member name="P:Database.DatabaseUpdates.Update1.UpdateSQL">
+            <inheritdoc/>
+        </member>
+        <member name="P:Database.DatabaseUpdates.Update1.Priority">
+            <inheritdoc/>
+        </member>
+        <member name="T:Database.DatabaseUpdates.Update2">
+            <summary>
+            Represents the first iteration of the database.
+            </summary>
+        </member>
+        <member name="P:Database.DatabaseUpdates.Update2.UpdateSQL">
+            <inheritdoc/>
+        </member>
+        <member name="P:Database.DatabaseUpdates.Update2.Priority">
+            <inheritdoc/>
+        </member>
+        <member name="T:Database.DataReader">
+            <summary>
+            A class used to read data from posgresql.
+            </summary>
+        </member>
+        <member name="M:Database.DataReader.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Database.DataReader"/> class.
+            </summary>
+            <param name="configuration">The configuration to use. Needs to contain a connection string.</param>
+        </member>
+        <member name="P:Database.DataReader.Configuration">
+            <summary>
+            Gets the configuration the solution is using.
+            </summary>
+        </member>
+        <member name="P:Database.DataReader.ConnectionStringName">
+            <summary>
+            Gets or Sets connection string to use.
+            </summary>
+        </member>
+        <member name="P:Database.DataReader.ConnectionString">
+            <summary>
+            Gets value of the connection string.
+            </summary>
+        </member>
+        <member name="M:Database.DataReader.GetPeople">
+            <summary>
+            Reads people from the database.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> that returns people.</returns>
+        </member>
+        <member name="T:Database.DataWriter">
+            <summary>
+            A class that interfaces with postgresql to write data.
+            </summary>
+        </member>
+        <member name="M:Database.DataWriter.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Database.DataWriter"/> class.
+            </summary>
+            <param name="configuration">The configuration to use. Needs to contain a connection string.</param>
+        </member>
+        <member name="P:Database.DataWriter.Configuration">
+            <summary>
+            Gets the configuration the solution is using.
+            </summary>
+        </member>
+        <member name="P:Database.DataWriter.ConnectionStringName">
+            <summary>
+            Gets or Sets connection string to use.
+            </summary>
+        </member>
+        <member name="P:Database.DataWriter.ConnectionString">
+            <summary>
+            Gets value of the connection string.
+            </summary>
+        </member>
+        <member name="M:Database.DataWriter.WritePerson(Models.Person)">
+            <summary>
+            A method to write a person to the database.
+            </summary>
+            <param name="person">The person to write.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Database.DataWriter.WriteExercise(Models.Exercise)">
+            <summary>
+            Writes a new exercise to the database.
+            </summary>
+            <param name="exercise">The exercise to write.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="T:Database.IDataReader">
+            <summary>
+            Used to read data for the fitness tracker app.
+            </summary>
+        </member>
+        <member name="P:Database.IDataReader.Configuration">
+            <summary>
+            Gets configuration the reader needs.
+            </summary>
+        </member>
+        <member name="P:Database.IDataReader.ConnectionStringName">
+            <summary>
+            Gets or sets the connection string name.
+            </summary>
+        </member>
+        <member name="M:Database.IDataReader.GetPeople">
+            <summary>
+            Gets the people.
+            </summary>
+            <returns>A task containing a collection of people.</returns>
+        </member>
+        <member name="T:Database.IDataWriter">
+            <summary>
+            An interface for writing data for the fitness app.
+            </summary>
+        </member>
+        <member name="P:Database.IDataWriter.Configuration">
+            <summary>
+            Gets configuration the fitness app is using.
+            </summary>
+        </member>
+        <member name="P:Database.IDataWriter.ConnectionStringName">
+            <summary>
+            Gets or sets connection string name the app is using.
+            </summary>
+        </member>
+        <member name="M:Database.IDataWriter.WritePerson(Models.Person)">
+            <summary>
+            Writes a person to memory.
+            </summary>
+            <param name="person">The person to write.</param>
+            <returns>A blank task.</returns>
+        </member>
+        <member name="M:Database.IDataWriter.WriteExercise(Models.Exercise)">
+            <summary>
+            Writes a exercise.
+            </summary>
+            <param name="exercise">The exercise to write.</param>
+            <returns>A blank task.</returns>
+        </member>
+    </members>
+</doc>

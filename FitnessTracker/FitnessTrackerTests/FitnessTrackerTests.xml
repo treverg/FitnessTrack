@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FitnessTrackerTests</name>
+    </assembly>
+    <members>
+        <member name="T:FitnessTrackerTests.DatabaseTests">
+            <summary>
+            A class to test the database functionality.
+            </summary>
+        </member>
+        <member name="M:FitnessTrackerTests.DatabaseTests.AssemblyInit(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)">
+            <summary>
+            Initalizes the database.
+            </summary>
+        </member>
+        <member name="M:FitnessTrackerTests.DatabaseTests.GetPeople">
+            <summary>
+            Tests reading values from the people table.
+            </summary>
+        </member>
+        <member name="M:FitnessTrackerTests.DatabaseTests.WritePerson">
+            <summary>
+            Tests writing a person to the database.
+            </summary>
+        </member>
+        <member name="M:FitnessTrackerTests.DatabaseTests.WriteExercise">
+            <summary>
+            Tests writing an exercise to the database.
+            </summary>
+        </member>
+        <member name="M:FitnessTrackerTests.DatabaseTests.Cleanup">
+            <summary>
+            Removes the database after running tests.
+            </summary>
+        </member>
+    </members>
+</doc>

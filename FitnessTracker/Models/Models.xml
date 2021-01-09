@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Models</name>
+    </assembly>
+    <members>
+        <member name="T:Models.Exercise">
+            <summary>
+            A class representing an exercise.
+            </summary>
+        </member>
+        <member name="P:Models.Exercise.Guid">
+            <summary>
+            Gets or sets the unique ID.
+            </summary>
+        </member>
+        <member name="P:Models.Exercise.Name">
+            <summary>
+            Gets or sets the exercise name.
+            </summary>
+        </member>
+        <member name="P:Models.Exercise.ExampleVideo">
+            <summary>
+            Gets or sets the example video.
+            </summary>
+        </member>
+        <member name="P:Models.Exercise.FormVideo">
+            <summary>
+            Gets or sets the video for form.
+            </summary>
+        </member>
+        <member name="T:Models.Person">
+            <summary>
+            A model representing people.
+            </summary>
+        </member>
+        <member name="P:Models.Person.Guid">
+            <summary>
+            Gets or sets unique identifier for people.
+            </summary>
+        </member>
+        <member name="P:Models.Person.Name">
+            <summary>
+            Gets or sets the name of a person.
+            </summary>
+        </member>
+    </members>
+</doc>
