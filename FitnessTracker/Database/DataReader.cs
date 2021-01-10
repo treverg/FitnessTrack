@@ -75,5 +75,37 @@ namespace Database
 
             return people;
         }
+
+        /// <summary>
+        /// Gets the exercises from the database.
+        /// </summary>
+        /// <returns>Returns a task that evalutes to an exercise.</returns>
+        public async Task<Collection<Exercise>> GetExercises()
+        {
+            Collection<Exercise> exercises = new Collection<Exercise>();
+            using (var con = new NpgsqlConnection(this.ConnectionString))
+            {
+                con.Open();
+
+                var sql = "SELECT ID, name, example_video, form_video FROM PERSON";
+
+                using (var cmd = new NpgsqlCommand(sql, con))
+                {
+                    NpgsqlDataReader reader = await Task.Run(() => cmd.ExecuteReader());
+                    while (reader.Read())
+                    {
+                        exercises.Add(new Exercise()
+                        {
+                            Guid = Guid.Parse(reader[0].ToString()),
+                            Name = reader[1].ToString(),
+                            ExampleVideo = reader[2].ToString(),
+                            FormVideo = reader[3].ToString(),
+                        });
+                    }
+                }
+            }
+
+            return exercises;
+        }
     }
 }

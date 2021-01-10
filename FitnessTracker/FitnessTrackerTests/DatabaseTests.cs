@@ -9,6 +9,7 @@ namespace FitnessTrackerTests
     using System.Configuration;
     using System.IO;
     using System.Reflection;
+    using System.Threading.Tasks;
     using Database;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.Hosting;
@@ -46,9 +47,18 @@ namespace FitnessTrackerTests
         [TestMethod]
         public void GetPeople()
         {
-            IDataReader people = new DataReader(Configuration);
-            people.GetPeople();
-            Console.WriteLine("Hello World!");
+            IDataReader reader = new DataReader(Configuration);
+            reader.GetPeople();
+        }
+
+        /// <summary>
+        /// Tests reading values from the exercise table.
+        /// </summary>
+        [TestMethod]
+        public void GetExercises()
+        {
+            IDataReader reader = new DataReader(Configuration);
+            reader.GetExercises();
         }
 
         /// <summary>
@@ -57,8 +67,20 @@ namespace FitnessTrackerTests
         [TestMethod]
         public void WritePerson()
         {
-            IDataWriter dataWriter = new DataWriter(Configuration);
-            dataWriter.WritePerson(new Models.Person() { Name = "Test" });
+            Task task = new Task(async () =>
+            {
+                var personToWrite = new Models.Person() { Name = "Test" };
+                IDataWriter dataWriter = new DataWriter(Configuration);
+                await dataWriter.WritePerson(personToWrite);
+
+                IDataReader reader = new DataReader(Configuration);
+                var people = await reader.GetPeople();
+                if (!people.Contains(personToWrite))
+                {
+                    throw new Exception("Person failed to write to database");
+                }
+            });
+            task.RunSynchronously();
         }
 
         /// <summary>
@@ -67,13 +89,26 @@ namespace FitnessTrackerTests
         [TestMethod]
         public void WriteExercise()
         {
-            IDataWriter dataWriter = new DataWriter(Configuration);
-            dataWriter.WriteExercise(new Models.Exercise()
+            Task task = new Task(async () =>
             {
-                Name = "Squat",
-                ExampleVideo = "Http://SomeVideo",
-                FormVideo = "http://SomeForm",
+                var exerciseToWrite = new Models.Exercise()
+                {
+                    Name = "Squat",
+                    ExampleVideo = "Http://SomeVideo",
+                    FormVideo = "http://SomeForm",
+                };
+
+                IDataWriter dataWriter = new DataWriter(Configuration);
+                await dataWriter.WriteExercise(exerciseToWrite);
+
+                IDataReader reader = new DataReader(Configuration);
+                var exercises = await reader.GetExercises();
+                if (!exercises.Contains(exerciseToWrite))
+                {
+                    throw new Exception("Exercise failed to write to database");
+                }
             });
+            task.RunSynchronously();
         }
 
         /// <summary>

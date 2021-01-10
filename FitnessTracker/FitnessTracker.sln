@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitnessTracker", "FitnessTr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database", "Database\Database.csproj", "{07CC5880-9CDB-4123-AB77-C6B2A7A328A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessTrackerTests", "FitnessTrackerTests\FitnessTrackerTests.csproj", "{26E21ABD-8B27-45ED-9614-EA5D1701C560}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitnessTrackerTests", "FitnessTrackerTests\FitnessTrackerTests.csproj", "{26E21ABD-8B27-45ED-9614-EA5D1701C560}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{773CA1D7-D7D9-4255-AF1B-5E6DAD62467A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{773CA1D7-D7D9-4255-AF1B-5E6DAD62467A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

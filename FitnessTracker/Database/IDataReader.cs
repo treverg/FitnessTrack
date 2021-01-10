@@ -29,5 +29,11 @@ namespace Database
         /// </summary>
         /// <returns>A task containing a collection of people.</returns>
         Task<Collection<Person>> GetPeople();
+
+        /// <summary>
+        /// Gets the exercises in the database.
+        /// </summary>
+        /// <returns>A task containing a collection of exercises.</returns>
+        Task<Collection<Exercise>> GetExercises();
     }
 }

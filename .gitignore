@@ -348,5 +348,3 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
-/FitnessTracker/FitnessTracker/appsettings.json
-/FitnessTracker/FitnessTracker/appsettings.Development.json
