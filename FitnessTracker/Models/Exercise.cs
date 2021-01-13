@@ -5,6 +5,7 @@
 namespace Models
 {
     using System;
+    using System.Collections.ObjectModel;
 
     /// <summary>
     /// A class representing an exercise.
@@ -30,6 +31,11 @@ namespace Models
         /// Gets or sets the video for form.
         /// </summary>
         public string FormVideo { get; set; }
+
+        /// <summary>
+        /// Gets or sets the number of reptitions for that particular set.
+        /// </summary>
+        public Collection<Repetition> RepititionsForEachSet { get; set; } = new Collection<Repetition>();
 
         /// <summary>
         /// Compares if two exercises are equal.

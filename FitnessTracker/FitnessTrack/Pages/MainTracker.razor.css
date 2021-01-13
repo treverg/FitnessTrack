@@ -1,9 +1,35 @@
 ﻿.numberCircle {
-    width: 120px;
-    line-height: 120px;
+    width: 60px;
+    line-height: 60px;
     border-radius: 50%;
     text-align: center;
     font-size: 32px;
     border: 2px solid #666;
     background-color: cyan;
+}
+
+.unselectable {
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    /*
+     Introduced in IE 10.
+     See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+   */
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#container {
+    background-color: red;
+    overflow: hidden;
+}
+
+#inner {
+    overflow: hidden;
+}
+
+.child {
+    float: left;
+    background-color: blue;
 }

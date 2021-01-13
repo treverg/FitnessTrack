@@ -1,5 +1,73 @@
 ﻿@page "/maintracker"
+@page "/"
+@using Models
 
-<div class="numberCircle">1</div>
-<div class="numberCircle">100</div>
-<div class="numberCircle">10000</div>
+<div>
+    <button @onclick="IncrementCount"></button>
+    <label>Repetition (REP) Count</label> <br />
+    <input @onclick="DisableCustomRepetitionCount" type="radio" name="repetitionCount" value="5"> 5 <br />
+    <input @onclick="DisableCustomRepetitionCount" type="radio" name="repetitionCount" value="12"> 12 <br />
+    <input @onclick="DisableCustomRepetitionCount" type="radio" name="repetitionCount" value="25"> 25 <br />
+    <input @onclick="EnableCustomRepetitionCount" type="radio" name="repetitionCount" value="Other"> Other  <input disabled="@disableCustomRepitionCount" type="number" @bind="@repCount" /> <br />
+</div>
+
+<div>
+    @foreach (var exercise in Exercises)
+    {
+        <label>@exercise.Name</label> <br />
+        <div id="container">
+            <div id="inner">
+                @foreach (var repitition in exercise.RepititionsForEachSet)
+                {
+                    <div class="numberCircle unselectable child">@repitition.RepCount</div>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    private int repCount = 0;
+
+    private int setCount = 0;
+
+    private bool disableCustomRepitionCount = true;
+
+    public List<Exercise> Exercises = new List<Exercise>();
+
+    private void IncrementCount()
+    {
+        repCount++;
+
+        Exercises.Add(new Models.Exercise()
+        {
+            Name = "Squat",
+            ExampleVideo = "Http://SomeVideo",
+            FormVideo = "http://SomeForm",
+        });
+    }
+
+    private void EnableCustomRepetitionCount()
+    {
+        disableCustomRepitionCount = false;
+        this.AddRepsToExercises();
+    }
+
+    private void DisableCustomRepetitionCount()
+    {
+        disableCustomRepitionCount = true;
+        this.AddRepsToExercises();
+    }
+
+    private void AddRepsToExercises()
+    {
+        foreach(var exercise in Exercises)
+        {
+            exercise.RepititionsForEachSet.Clear();
+            for(int i = 0; i < repCount; i++)
+            {
+                exercise.RepititionsForEachSet.Add(new Repetition());
+            }
+        }
+    }
+}
