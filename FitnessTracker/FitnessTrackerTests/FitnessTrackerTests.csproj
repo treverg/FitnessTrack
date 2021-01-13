@@ -15,8 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="..\FitnessTracker\appsettings.json" Link="appsettings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="..\FitnessTrack\appsettings.json" Link="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
