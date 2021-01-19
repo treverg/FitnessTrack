@@ -5,10 +5,18 @@
 <div>
     <button @onclick="IncrementCount"></button>
     <label>Repetition (REP) Count</label> <br />
-    <input @onclick="DisableCustomRepetitionCount" type="radio" name="repetitionCount" value="5"> 5 <br />
-    <input @onclick="DisableCustomRepetitionCount" type="radio" name="repetitionCount" value="12"> 12 <br />
-    <input @onclick="DisableCustomRepetitionCount" type="radio" name="repetitionCount" value="25"> 25 <br />
-    <input @onclick="EnableCustomRepetitionCount" type="radio" name="repetitionCount" value="Other"> Other  <input disabled="@disableCustomRepitionCount" type="number" @bind="@repCount" /> <br />
+    <input @onclick="(() => DisableCustomRepetitionCount(5))" type="radio" name="repetitionCount" value="5"> 5 <br />
+    <input @onclick="(() => DisableCustomRepetitionCount(12))" type="radio" name="repetitionCount" value="12"> 12 <br />
+    <input @onclick="(() => DisableCustomRepetitionCount(25))" type="radio" name="repetitionCount" value="25"> 25 <br />
+    <input @onclick="(() => EnableCustomRepetitionCount(0))" type="radio" name="repetitionCount" value="Other"> Other  <input disabled="@disableCustomRepitionCount" type="number" @bind="@repetitionCount" /> <br />
+</div>
+
+<div>
+    <label>Set Count</label> <br />
+    <input @onclick="(() => DisableCustomSetCount(1))" type="radio" name="setCount" value="1"> 1 <br />
+    <input @onclick="(() => DisableCustomSetCount(3))" type="radio" name="setCount" value="3"> 3 <br />
+    <input @onclick="(() => DisableCustomSetCount(5))" type="radio" name="setCount" value="5"> 5 <br />
+    <input @onclick="(() => EnableCustomSetCount(0))" type="radio" name="setCount" value="Other"> Other  <input disabled="@disableCustomSetCount" type="number" @bind="@setCount" /> <br />
 </div>
 
 <div>
@@ -17,9 +25,9 @@
         <label>@exercise.Name</label> <br />
         <div id="container">
             <div id="inner">
-                @foreach (var repitition in exercise.RepititionsForEachSet)
+                @foreach (var set in exercise.SetInformation)
                 {
-                    <div class="numberCircle unselectable child">@repitition.RepCount</div>
+                    <div class="numberCircle unselectable child">@set.RepCount</div>
                 }
             </div>
         </div>
@@ -27,18 +35,18 @@
 </div>
 
 @code {
-    private int repCount = 0;
+    private int repetitionCount = 0;
 
     private int setCount = 0;
 
     private bool disableCustomRepitionCount = true;
 
+    private bool disableCustomSetCount = true;
+
     public List<Exercise> Exercises = new List<Exercise>();
 
     private void IncrementCount()
     {
-        repCount++;
-
         Exercises.Add(new Models.Exercise()
         {
             Name = "Squat",
@@ -47,26 +55,40 @@
         });
     }
 
-    private void EnableCustomRepetitionCount()
+    private void EnableCustomRepetitionCount(int repCount)
     {
+        this.repetitionCount = repCount;
         disableCustomRepitionCount = false;
-        this.AddRepsToExercises();
     }
 
-    private void DisableCustomRepetitionCount()
+    private void DisableCustomRepetitionCount(int repCount)
     {
+        this.repetitionCount = repCount;
         disableCustomRepitionCount = true;
-        this.AddRepsToExercises();
     }
 
-    private void AddRepsToExercises()
+    private void EnableCustomSetCount(int setCount)
+    {
+        this.setCount = setCount;
+        this.disableCustomSetCount = false;
+        this.AddSetsToExercise();
+    }
+
+    private void DisableCustomSetCount(int setCount)
+    {
+        this.setCount = setCount;
+        this.disableCustomSetCount = true;
+        this.AddSetsToExercise();
+    }
+
+    private void AddSetsToExercise()
     {
         foreach(var exercise in Exercises)
         {
-            exercise.RepititionsForEachSet.Clear();
-            for(int i = 0; i < repCount; i++)
+            exercise.SetInformation.Clear();
+            for(int i = 0; i < setCount; i++)
             {
-                exercise.RepititionsForEachSet.Add(new Repetition());
+                exercise.SetInformation.Add(new SetInformation());
             }
         }
     }

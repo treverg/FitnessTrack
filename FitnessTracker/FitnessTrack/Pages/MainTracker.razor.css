@@ -21,7 +21,6 @@
 }
 
 #container {
-    background-color: red;
     overflow: hidden;
 }
 
@@ -31,5 +30,4 @@
 
 .child {
     float: left;
-    background-color: blue;
 }

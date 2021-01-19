@@ -35,7 +35,7 @@ namespace Models
         /// <summary>
         /// Gets or sets the number of reptitions for that particular set.
         /// </summary>
-        public Collection<Repetition> RepititionsForEachSet { get; set; } = new Collection<Repetition>();
+        public Collection<SetInformation> SetInformation { get; set; } = new Collection<SetInformation>();
 
         /// <summary>
         /// Compares if two exercises are equal.

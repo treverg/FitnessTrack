@@ -7,7 +7,7 @@ namespace Models
     /// <summary>
     /// A class used to track the number of repititions.
     /// </summary>
-    public class Repetition
+    public class SetInformation
     {
         /// <summary>
         /// Gets or sets the current set the user is on.
