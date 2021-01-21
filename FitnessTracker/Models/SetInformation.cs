@@ -1,4 +1,4 @@
-﻿// <copyright file="Repetition.cs" company="TreverGannonsMadExperiment">
+﻿// <copyright file="SetInformation.cs" company="TreverGannonsMadExperiment">
 // Copyright (c) TreverGannonsMadExperiment. All rights reserved.
 // </copyright>
 

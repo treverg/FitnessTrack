@@ -1,3 +1,4 @@
+using Database;
 using FitnessTrack.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
@@ -30,6 +31,8 @@ namespace FitnessTrack
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
+            services.AddSingleton<DataReader>();
+            services.AddSingleton<DataWriter>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

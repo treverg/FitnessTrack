@@ -21,6 +21,8 @@ namespace FitnessTrackerTests
     [TestClass]
     public class DatabaseTests
     {
+        private static readonly string ConnectionStringName = "UnitTests";
+
         private static IConfiguration Configuration { get; set; }
 
         /// <summary>
@@ -38,7 +40,7 @@ namespace FitnessTrackerTests
             .Build();
 
             DatabaseCreator creator = new DatabaseCreator(Configuration);
-            creator.CreateDatabase("UnitTests").Wait();
+            creator.CreateDatabase(ConnectionStringName).Wait();
         }
 
         /// <summary>
@@ -47,7 +49,7 @@ namespace FitnessTrackerTests
         [TestMethod]
         public void GetPeople()
         {
-            IDataReader reader = new DataReader(Configuration);
+            IDataReader reader = new DataReader(Configuration) { ConnectionStringName = ConnectionStringName };
             reader.GetPeople();
         }
 
@@ -57,7 +59,7 @@ namespace FitnessTrackerTests
         [TestMethod]
         public void GetExercises()
         {
-            IDataReader reader = new DataReader(Configuration);
+            IDataReader reader = new DataReader(Configuration) { ConnectionStringName = ConnectionStringName };
             reader.GetExercises();
         }
 
@@ -70,10 +72,10 @@ namespace FitnessTrackerTests
             Task task = new Task(async () =>
             {
                 var personToWrite = new Models.Person() { Name = "Test" };
-                IDataWriter dataWriter = new DataWriter(Configuration);
+                IDataWriter dataWriter = new DataWriter(Configuration) { ConnectionStringName = ConnectionStringName };
                 await dataWriter.WritePerson(personToWrite);
 
-                IDataReader reader = new DataReader(Configuration);
+                IDataReader reader = new DataReader(Configuration) { ConnectionStringName = ConnectionStringName };
                 var people = await reader.GetPeople();
                 if (!people.Contains(personToWrite))
                 {
@@ -98,10 +100,10 @@ namespace FitnessTrackerTests
                     FormVideo = "http://SomeForm",
                 };
 
-                IDataWriter dataWriter = new DataWriter(Configuration);
+                IDataWriter dataWriter = new DataWriter(Configuration) { ConnectionStringName = ConnectionStringName };
                 await dataWriter.WriteExercise(exerciseToWrite);
 
-                IDataReader reader = new DataReader(Configuration);
+                IDataReader reader = new DataReader(Configuration) { ConnectionStringName = ConnectionStringName };
                 var exercises = await reader.GetExercises();
                 if (!exercises.Contains(exerciseToWrite))
                 {
@@ -117,7 +119,6 @@ namespace FitnessTrackerTests
         [TestCleanup]
         public void Cleanup()
         {
-            Console.WriteLine("hi");
         }
     }
 }

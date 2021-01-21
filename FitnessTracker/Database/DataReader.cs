@@ -87,7 +87,7 @@ namespace Database
             {
                 con.Open();
 
-                var sql = "SELECT ID, name, example_video, form_video FROM PERSON";
+                var sql = "SELECT ID, name, example_video, form_video FROM EXERCISE";
 
                 using (var cmd = new NpgsqlCommand(sql, con))
                 {
